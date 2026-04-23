@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Darshna 🎂</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Dancing+Script:wght@700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --pink: #ff6fa8;
+      --rose: #ff3d77;
+      --gold: #ffd700;
+      --lavender: #c084fc;
+      --cream: #fff8f0;
+      --deep: #1a0a2e;
+      --soft: #ffe4f0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--deep);
+      font-family: 'Nunito', sans-serif;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ── STARS BACKGROUND ── */
+    #stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle var(--d, 3s) infinite alternate;
+    }
+    @keyframes twinkle {
+      from { opacity: 0.1; transform: scale(1); }
+      to   { opacity: 1;   transform: scale(1.4); }
+    }
+
+    /* ── FLOATING HEARTS ── */
+    .heart-container {
+      position: fixed;
+      bottom: -60px;
+      pointer-events: none;
+      z-index: 1;
+      animation: floatUp var(--dur, 6s) linear infinite;
+      animation-delay: var(--delay, 0s);
+    }
+    .heart-container::before {
+      content: '💖';
+      font-size: var(--size, 24px);
+      opacity: 0.7;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ── CONFETTI ── */
+    .confetti {
+      position: fixed;
+      top: -10px;
+      pointer-events: none;
+      z-index: 1;
+      animation: confettiFall var(--dur,4s) linear infinite;
+      animation-delay: var(--delay,0s);
+      width: var(--w,10px);
+      height: var(--h,14px);
+      background: var(--col, #ff6fa8);
+      border-radius: 2px;
+      opacity: 0.85;
+    }
+    @keyframes confettiFall {
+      0%   { transform: translateY(0) rotateZ(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotateZ(720deg); opacity: 0; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 80px 20px 40px;
+    }
+
+    .age-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold), #ffaa00);
+      color: #1a0a2e;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 8px 24px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+      animation: badgePulse 2s infinite;
+    }
+    @keyframes badgePulse {
+      0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,215,0,0.5); }
+      50%      { transform: scale(1.04); box-shadow: 0 0 0 12px rgba(255,215,0,0); }
+    }
+
+    .hero h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(3rem, 10vw, 7rem);
+      background: linear-gradient(135deg, #fff 10%, var(--pink) 50%, var(--gold) 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      filter: drop-shadow(0 4px 24px rgba(255,111,168,0.5));
+      animation: fadeSlideDown 1.2s ease both;
+    }
+    @keyframes fadeSlideDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero .name {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(2rem, 7vw, 5rem);
+      color: var(--gold);
+      animation: fadeSlideDown 1.4s ease both;
+      margin-top: 8px;
+    }
+
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 20px;
+      letter-spacing: 2px;
+      animation: fadeSlideDown 1.6s ease both;
+    }
+
+    /* ── CAKE ── */
+    .cake-wrap {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      margin: 20px auto;
+      animation: fadeSlideDown 1.8s ease both;
+    }
+    .cake {
+      font-size: clamp(80px, 18vw, 140px);
+      display: inline-block;
+      animation: cakeWiggle 3s ease-in-out infinite;
+      filter: drop-shadow(0 8px 32px rgba(255,111,168,0.6));
+    }
+    @keyframes cakeWiggle {
+      0%,100% { transform: rotate(-4deg) scale(1); }
+      50%      { transform: rotate(4deg) scale(1.08); }
+    }
+
+    /* ── COUNTDOWN ── */
+    .countdown-section {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 20px;
+      margin: 10px auto;
+    }
+    .countdown-section h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--lavender);
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+    .countdown-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .cbox {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,111,168,0.3);
+      border-radius: 16px;
+      padding: 18px 26px;
+      min-width: 90px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s;
+    }
+    .cbox:hover { transform: translateY(-6px); }
+    .cbox .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      color: var(--gold);
+      display: block;
+    }
+    .cbox .lbl {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+    }
+
+    /* ── JOURNEY TIMELINE ── */
+    .journey {
+      position: relative;
+      z-index: 10;
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .journey h2 {
+      font-family: 'Playfair Display', serif;
+      color: white;
+      font-size: 1.8rem;
+      margin-bottom: 36px;
+    }
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+      text-align: left;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 16px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--pink), var(--lavender), var(--gold));
+    }
+    .titem {
+      position: relative;
+      margin-bottom: 32px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,111,168,0.2);
+      border-radius: 16px;
+      padding: 20px 20px 20px 20px;
+      backdrop-filter: blur(8px);
+      transition: transform 0.3s, background 0.3s;
+    }
+    .titem:hover {
+      transform: translateX(6px);
+      background: rgba(255,111,168,0.1);
+    }
+    .titem::before {
+      content: '';
+      position: absolute;
+      left: -32px; top: 24px;
+      width: 14px; height: 14px;
+      background: var(--pink);
+      border-radius: 50%;
+      border: 2px solid var(--deep);
+      box-shadow: 0 0 10px var(--pink);
+    }
+    .titem .year {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .titem .event {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+    }
+    .titem .icon { font-size: 1.6rem; margin-right: 8px; }
+
+    /* ── WISHES SECTION ── */
+    .wishes {
+      position: relative;
+      z-index: 10;
+      max-width: 900px;
+      margin: 20px auto 50px;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .wishes h2 {
+      font-family: 'Playfair Display', serif;
+      color: white;
+      font-size: 1.8rem;
+      margin-bottom: 36px;
+    }
+    .wish-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .wish-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,111,168,0.25);
+      border-radius: 20px;
+      padding: 28px 22px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.35s, box-shadow 0.35s;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    .wish-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 100px; height: 100px;
+      background: radial-gradient(circle, rgba(255,111,168,0.2), transparent 70%);
+      border-radius: 50%;
+    }
+    .wish-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(255,111,168,0.25);
+    }
+    .wish-card .wish-icon { font-size: 2rem; margin-bottom: 12px; }
+    .wish-card .wish-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--pink);
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+    }
+    .wish-card .wish-text {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* ── AGE REVEAL ── */
+    .age-reveal {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 60px 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .age-reveal .big-age {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(5rem, 20vw, 10rem);
+      background: linear-gradient(135deg, var(--gold), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      filter: drop-shadow(0 4px 30px rgba(255,215,0,0.4));
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { filter: drop-shadow(0 4px 30px rgba(255,215,0,0.4)); }
+      50%      { filter: drop-shadow(0 4px 50px rgba(255,215,0,0.8)); }
+    }
+    .age-reveal .age-label {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 12px;
+    }
+    .age-reveal .dates-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .date-pill {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,215,0,0.3);
+      border-radius: 999px;
+      padding: 10px 24px;
+      color: var(--gold);
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+    }
+    .date-arrow { font-size: 1.4rem; color: var(--pink); }
+
+    /* ── QUOTE ── */
+    .quote-section {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 40px 30px;
+      max-width: 650px;
+      margin: 0 auto 30px;
+    }
+    .quote-section blockquote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      color: rgba(255,255,255,0.85);
+      line-height: 1.8;
+      position: relative;
+    }
+    .quote-section blockquote::before,
+    .quote-section blockquote::after {
+      content: '"';
+      font-size: 4rem;
+      color: var(--pink);
+      opacity: 0.5;
+      line-height: 0;
+      vertical-align: -0.5rem;
+    }
+
+    /* ── MUSIC BUTTON ── */
+    .music-btn {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      z-index: 999;
+      background: linear-gradient(135deg, var(--rose), var(--lavender));
+      border: none;
+      border-radius: 50%;
+      width: 58px; height: 58px;
+      font-size: 1.6rem;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(255,61,119,0.5);
+      transition: transform 0.2s;
+    }
+    .music-btn:hover { transform: scale(1.1); }
+
+    /* ── BALLOON POPUP ── */
+    .balloons {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 500;
+    }
+    .balloon {
+      position: absolute;
+      bottom: -80px;
+      font-size: 2.5rem;
+      animation: balloonRise var(--dur, 5s) ease-in var(--delay, 0s) both;
+    }
+    @keyframes balloonRise {
+      0%   { transform: translateY(0) scale(0.5); opacity: 0; }
+      10%  { opacity: 1; transform: translateY(-5vh) scale(1); }
+      100% { transform: translateY(-110vh) scale(1); opacity: 0; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 40px 20px 60px;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+    footer span { color: var(--pink); }
+
+    /* ── FIREWORK CANVAS ── */
+    #fireworks { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--deep); }
+    ::-webkit-scrollbar-thumb { background: var(--pink); border-radius: 3px; }
+
+    /* ── GLOW DIVIDER ── */
+    .glow-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--pink), var(--lavender), transparent);
+      max-width: 500px;
+      margin: 40px auto;
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Stars -->
+<div id="stars"></div>
+<!-- Fireworks canvas -->
+<canvas id="fireworks"></canvas>
+<!-- Balloons -->
+<div class="balloons" id="balloons"></div>
+
+<!-- Floating hearts -->
+<script>
+  for(let i=0;i<14;i++){
+    const h=document.createElement('div');
+    h.className='heart-container';
+    h.style.cssText=`left:${Math.random()*100}%;--dur:${5+Math.random()*7}s;--delay:${Math.random()*8}s;--size:${16+Math.random()*26}px`;
+    document.body.appendChild(h);
+  }
+</script>
+
+<!-- Confetti -->
+<script>
+  const colors=['#ff6fa8','#ffd700','#c084fc','#ff3d77','#a5f3fc','#86efac'];
+  for(let i=0;i<40;i++){
+    const c=document.createElement('div');
+    c.className='confetti';
+    c.style.cssText=`left:${Math.random()*100}%;--dur:${3+Math.random()*5}s;--delay:${Math.random()*6}s;--col:${colors[i%colors.length]};--w:${6+Math.random()*10}px;--h:${10+Math.random()*14}px`;
+    document.body.appendChild(c);
+  }
+</script>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="age-badge">🎉 It's Her Special Day! 🎉</div>
+  <h1>Happy Birthday</h1>
+  <div class="name">Darshna ✨</div>
+  <div class="subtitle">🌸 A soul as beautiful as the stars above 🌸</div>
+</div>
+
+<!-- Cake -->
+<div class="cake-wrap">
+  <div class="cake">🎂</div>
+</div>
+
+<!-- Age Reveal -->
+<div class="age-reveal">
+  <div class="big-age">16</div>
+  <div class="age-label">Years of Pure Sunshine</div>
+  <div class="dates-row">
+    <div class="date-pill">📅 Born: 7 June 2010</div>
+    <div class="date-arrow">→</div>
+    <div class="date-pill">🌟 Today: 7 June 2026</div>
+  </div>
+</div>
+
+<div class="glow-divider"></div>
+
+<!-- Countdown Timer -->
+<div class="countdown-section">
+  <h2>⏳ Counting Every Precious Second Of Your Day</h2>
+  <div class="countdown-boxes">
+    <div class="cbox"><span class="num" id="ch">00</span><span class="lbl">Hours</span></div>
+    <div class="cbox"><span class="num" id="cm">00</span><span class="lbl">Minutes</span></div>
+    <div class="cbox"><span class="num" id="cs">00</span><span class="lbl">Seconds</span></div>
+    <div class="cbox"><span class="num" id="cm2">🕯️</span><span class="lbl">Candles</span></div>
+  </div>
+</div>
+
+<div class="glow-divider"></div>
+
+<!-- Journey Timeline -->
+<div class="journey">
+  <h2>🌸 Darshna's Beautiful Journey 🌸</h2>
+  <div class="timeline">
+    <div class="titem">
+      <div class="year">7 June 2010</div>
+      <div class="event"><span class="icon">👶</span>The world became more beautiful the moment you were born. Stars rearranged themselves to welcome you, Darshna!</div>
+    </div>
+    <div class="titem">
+      <div class="year">2012 – 2 Years Old</div>
+      <div class="event"><span class="icon">🐣</span>Tiny steps, big smiles — you were already filling every room with joy and infectious laughter.</div>
+    </div>
+    <div class="titem">
+      <div class="year">2015 – 5 Years Old</div>
+      <div class="event"><span class="icon">🎒</span>School begins! A curious little girl with bright eyes ready to learn, explore, and conquer the world.</div>
+    </div>
+    <div class="titem">
+      <div class="year">2018 – 8 Years Old</div>
+      <div class="event"><span class="icon">🌻</span>Growing into a thoughtful, kind soul — making friends, chasing dreams, and spreading warmth everywhere.</div>
+    </div>
+    <div class="titem">
+      <div class="year">2021 – 11 Years Old</div>
+      <div class="event"><span class="icon">📚</span>A time of growth, learning, and discovering your passions. Your creativity and heart of gold shine so bright!</div>
+    </div>
+    <div class="titem">
+      <div class="year">2024 – 14 Years Old</div>
+      <div class="event"><span class="icon">🦋</span>Blooming beautifully — into a strong, smart, and wonderful young woman. The world is lucky to have you!</div>
+    </div>
+    <div class="titem">
+      <div class="year">7 June 2026 – 16 Today! 🎉</div>
+      <div class="event"><span class="icon">👑</span>Sweet Sixteen! You have bloomed into someone extraordinary. Here's to new adventures, big dreams, and a future as dazzling as you are!</div>
+    </div>
+  </div>
+</div>
+
+<div class="glow-divider"></div>
+
+<!-- Wishes -->
+<div class="wishes">
+  <h2>💌 Wishes From The Heart 💌</h2>
+  <div class="wish-grid">
+
+    <div class="wish-card">
+      <div class="wish-icon">🌟</div>
+      <div class="wish-title">May Your Dreams Shine Bright</div>
+      <div class="wish-text">Darshna, every dream you hold in your heart deserves to come true. May this year bring you closer to all the beautiful things you wish for. The sky is not the limit — it's just the beginning!</div>
+    </div>
+
+    <div class="wish-card">
+      <div class="wish-icon">💖</div>
+      <div class="wish-title">Endless Happiness</div>
+      <div class="wish-text">You deserve happiness in every single moment — in the mornings when you wake up, in the laughter you share, and in the quiet moments that take your breath away. May joy be your constant companion!</div>
+    </div>
+
+    <div class="wish-card">
+      <div class="wish-icon">🦋</div>
+      <div class="wish-title">Strength & Courage</div>
+      <div class="wish-text">Life has many chapters, and I know yours will be filled with courage and resilience. Whenever things get tough, remember — you are stronger than you know, braver than you believe!</div>
+    </div>
+
+    <div class="wish-card">
+      <div class="wish-icon">🌺</div>
+      <div class="wish-title">Beautiful Friendships</div>
+      <div class="wish-text">May your life always be surrounded by people who truly see you, love you, and celebrate you — not just today, but every single day. You deserve a tribe as wonderful as you!</div>
+    </div>
+
+    <div class="wish-card">
+      <div class="wish-icon">📚</div>
+      <div class="wish-title">Success In Everything</div>
+      <div class="wish-text">Whether it's studies, passions, or the paths you choose — may success follow you everywhere. You have the mind, the heart, and the spirit to achieve absolutely anything you set your eyes on!</div>
+    </div>
+
+    <div class="wish-card">
+      <div class="wish-icon">🎵</div>
+      <div class="wish-title">Let Life Be Your Song</div>
+      <div class="wish-text">May your life be like your favourite song — full of beautiful rhythm, incredible moments, and a melody that makes everyone around you smile. Dance through this year, Darshna!</div>
+    </div>
+
+    <div class="wish-card">
+      <div class="wish-icon">🌙</div>
+      <div class="wish-title">Sweet Sixteen Magic</div>
+      <div class="wish-text">Turning 16 is something truly special. You're stepping into a world of new possibilities, new adventures, and new versions of yourself. Embrace every single moment — you are magic!</div>
+    </div>
+
+    <div class="wish-card">
+      <div class="wish-icon">🌈</div>
+      <div class="wish-title">Colour Every Day Bright</div>
+      <div class="wish-text">May your days be painted in the brightest of colours — full of laughter, love, surprises, and endless beautiful memories. You make the world more colourful just by being in it!</div>
+    </div>
+
+    <div class="wish-card">
+      <div class="wish-icon">🏆</div>
+      <div class="wish-title">You Are Extraordinary</div>
+      <div class="wish-text">Never forget how truly special you are. You have a unique spark that no one else has. Own it, shine it, share it. The world needs more of you, Darshna — more of your light, your love, your soul!</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Quote -->
+<div class="quote-section">
+  <blockquote>
+    You were born to be real, not to be perfect. You are here to be you, not to live someone else's life — and you are doing it brilliantly, Darshna.
+  </blockquote>
+</div>
+
+<div class="glow-divider"></div>
+
+<footer>
+  Made with <span>❤️</span> for Darshna &nbsp;|&nbsp; Born 7 June 2010 &nbsp;·&nbsp; Celebrating 7 June 2026
+</footer>
+
+<!-- Music (Web Audio) -->
+<button class="music-btn" id="musicBtn" title="Toggle Birthday Tune">🔔</button>
+
+<script>
+/* ── STARS ── */
+const starsCont = document.getElementById('stars');
+for(let i=0;i<180;i++){
+  const s=document.createElement('div');
+  s.className='star';
+  const sz=Math.random()*2.5+0.5;
+  s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+  starsCont.appendChild(s);
+}
+
+/* ── COUNTDOWN (time left in birthday day) ── */
+function updateCountdown(){
+  const now=new Date();
+  const end=new Date(now.getFullYear(),now.getMonth(),now.getDate(),23,59,59);
+  let diff=Math.max(0,Math.floor((end-now)/1000));
+  const h=Math.floor(diff/3600); diff%=3600;
+  const m=Math.floor(diff/60);
+  const s=diff%60;
+  document.getElementById('ch').textContent=String(h).padStart(2,'0');
+  document.getElementById('cm').textContent=String(m).padStart(2,'0');
+  document.getElementById('cs').textContent=String(s).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+/* ── FIREWORKS ── */
+const canvas=document.getElementById('fireworks');
+const ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
+
+const particles=[];
+function launchFirework(){
+  const x=Math.random()*canvas.width;
+  const y=Math.random()*canvas.height*0.5+50;
+  const colors=['#ff6fa8','#ffd700','#c084fc','#ff3d77','#fff','#a5f3fc'];
+  const col=colors[Math.floor(Math.random()*colors.length)];
+  for(let i=0;i<60;i++){
+    const angle=Math.random()*Math.PI*2;
+    const speed=2+Math.random()*4;
+    particles.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,col,life:1,size:2+Math.random()*3});
+  }
+}
+function animateFireworks(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let i=particles.length-1;i>=0;i--){
+    const p=particles[i];
+    p.x+=p.vx; p.y+=p.vy; p.vy+=0.06; p.life-=0.018;
+    if(p.life<=0){particles.splice(i,1);continue;}
+    ctx.save();
+    ctx.globalAlpha=p.life;
+    ctx.fillStyle=p.col;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+  }
+  requestAnimationFrame(animateFireworks);
+}
+animateFireworks();
+setInterval(launchFirework,1200);
+launchFirework(); launchFirework();
+
+/* ── BALLOONS on load ── */
+const balloonEmojis=['🎈','🎀','🎊','🎁','✨','💫'];
+const balloonCont=document.getElementById('balloons');
+for(let i=0;i<20;i++){
+  setTimeout(()=>{
+    const b=document.createElement('div');
+    b.className='balloon';
+    b.textContent=balloonEmojis[Math.floor(Math.random()*balloonEmojis.length)];
+    b.style.cssText=`left:${Math.random()*100}%;--dur:${4+Math.random()*4}s;--delay:0s`;
+    balloonCont.appendChild(b);
+    setTimeout(()=>b.remove(),10000);
+  },i*300);
+}
+
+/* ── SIMPLE BIRTHDAY TUNE (Web Audio) ── */
+let audioCtx=null, playing=false, toneInterval=null;
+const notes=[261.6,261.6,293.7,261.6,349.2,329.6,
+             261.6,261.6,293.7,261.6,392,349.2,
+             261.6,261.6,523.3,440,349.2,329.6,293.7,
+             466.2,466.2,440,349.2,392,349.2];
+const durations=[0.3,0.1,0.4,0.4,0.4,0.8,
+                 0.3,0.1,0.4,0.4,0.4,0.8,
+                 0.3,0.1,0.4,0.4,0.4,0.4,0.8,
+                 0.3,0.1,0.4,0.4,0.4,0.8];
+
+function playTune(){
+  audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+  let t=audioCtx.currentTime+0.1;
+  notes.forEach((freq,i)=>{
+    const o=audioCtx.createOscillator();
+    const g=audioCtx.createGain();
+    o.connect(g); g.connect(audioCtx.destination);
+    o.type='sine';
+    o.frequency.setValueAtTime(freq,t);
+    g.gain.setValueAtTime(0,t);
+    g.gain.linearRampToValueAtTime(0.3,t+0.05);
+    g.gain.linearRampToValueAtTime(0,t+durations[i]-0.05);
+    o.start(t); o.stop(t+durations[i]);
+    t+=durations[i];
+  });
+}
+document.getElementById('musicBtn').addEventListener('click',()=>{
+  if(!playing){
+    playing=true;
+    document.getElementById('musicBtn').textContent='🔕';
+    playTune();
+    toneInterval=setInterval(playTune,10500);
+  } else {
+    playing=false;
+    document.getElementById('musicBtn').textContent='🔔';
+    if(audioCtx){audioCtx.close();audioCtx=null;}
+    clearInterval(toneInterval);
+  }
+});
+
+/* ── CLICK BURST ── */
+document.addEventListener('click',e=>{
+  for(let i=0;i<8;i++){
+    const sp=document.createElement('span');
+    sp.textContent=['⭐','💖','✨','🌸','💫'][Math.floor(Math.random()*5)];
+    sp.style.cssText=`position:fixed;left:${e.clientX}px;top:${e.clientY}px;font-size:${14+Math.random()*18}px;pointer-events:none;z-index:9999;animation:clickPop 0.8s ease forwards;transform:translate(-50%,-50%)`;
+    document.body.appendChild(sp);
+    setTimeout(()=>sp.remove(),900);
+  }
+});
+const style2=document.createElement('style');
+style2.textContent=`@keyframes clickPop{0%{opacity:1;transform:translate(-50%,-50%) scale(0.5)}50%{opacity:1;transform:translate(${Math.random()>0.5?'':'-'}${20+Math.random()*40}px,${-(20+Math.random()*60)}px) scale(1.2)}100%{opacity:0;transform:translate(${Math.random()>0.5?'':'-'}${30+Math.random()*60}px,${-(40+Math.random()*80)}px) scale(0.8)}}`;
+document.head.appendChild(style2);
+</script>
+
+</body>
+</html>
